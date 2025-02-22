@@ -22,7 +22,7 @@
 </head>
 <body>
     <div class="top_banner">
-        <div class="d-flex text-center">
+        <div class="d-flex text-center" role="button" onclick="location.href='index.php'">
             <img src="img/logo.png" style="height:65px;" alt="">
             <h1 class="mt-2 mx-3 font-weight-bold">臺灣人工智慧公會</h1>
         </div>
@@ -59,32 +59,30 @@
                 <h4 class='m-0'>公司名稱: ".$company["name"]."</h4>
                 <p class='m-0'>擁有者: ".$company["owner"]."</p>
             </div>";
-        ?>
-    </div>
-    <div class="content mx-auto">
-        <?php
-        $products=$pdo->query("SELECT * FROM `product` WHERE `company`='".$company["id"]."'")->fetchAll();
-        foreach($products as $product){
-            if($product["img"]!=""){
-                echo "<div class='product_card my-3 mx-auto' id='".$product["id"]."'>
-                    <h4 class='m-0'>".$product["company_name"]."</h4>
-                    <img src='data:".$product["mime"].";base64,".$product["img"]."' class='productimg' alt=''>
-                    <p class='m-0'>".$product["gtin"]."</p>
-                    <p class='m-0'>".$product["description"]."</p>
-                </div>";
-            }else{
-                echo "<div class='product_card my-3 mx-auto' id='".$product["id"]."'>
-                    <h4 class='m-0'>".$product["company_name"]."</h4>
-                    <img src='default_img.png' class='productimg' alt=''>
-                    <p class='m-0'>".$product["gtin"]."</p>
-                    <p class='m-0'>".$product["description"]."</p>
-                </div>";
+            $products=$pdo->query("SELECT * FROM `product` WHERE `company`='".$company["id"]."' LIMIT 3")->fetchAll();
+            foreach($products as $product){
+                if($product["img"]!=""){
+                    echo "<div class='product_card my-3 mx-auto' id='".$product["id"]."'>
+                        <h4 class='m-0'>產品名稱:".$product["name"]."</h4>
+                        <img src='data:".$product["mime"].";base64,".$product["img"]."' class='productimg' alt=''>
+                        <p class='m-0'>公司名稱:".$product["company_name"]."</p>
+                        <p class='m-0'>GTIN:".$product["gtin"]."</p>
+                        <p class='m-0'>描述:".$product["description"]."</p>
+                    </div>";
+                }else{
+                    echo "<div class='product_card my-3 mx-auto' id='".$product["id"]."'>
+                        <h4 class='m-0'>產品名稱:".$product["name"]."</h4>
+                        <img src='img/default_img.png' class='productimg' alt=''>
+                        <p class='m-0'>公司名稱:".$product["company_name"]."</p>
+                        <p class='m-0'>GTIN:".$product["gtin"]."</p>
+                        <p class='m-0'>描述:".$product["description"]."</p>
+                    </div>";
+                }
             }
-        }
         ?>
     </div>
-    <div class="d-flex justify-content-end mr-5 mb-5">
-        <button class="btn btn-info" id="show_more">顯示更多</button>
+    <div class="d-flex justify-content-end mr-5 " style="margin-bottom:100px;">
+        <button class="btn btn-info" id="show_more">顯示更多會員公司/產品</button>
     </div>
     <footer class="footer p-3 text-white">
         <p class="m-0">TWAIA, Taiwan Artificial Intelligence Association</p>
@@ -100,8 +98,8 @@
                 url:"set.php",
                 method:"POST",
                 data:{id:id,name:name,is:"company",login:false}
-            }).done(function(){
-                location.href='admincompanydetail.php';
+            }).done(function(){ 
+                location.href='companydetail.php';
             })
         })
     })
@@ -113,7 +111,7 @@
                 method:"POST",
                 data:{id:id,is:"product",login:false}
             }).done(function(){
-                location.href='adminproduct.php';
+                location.href='productdetail.php';
             })
         })
     })
@@ -123,7 +121,7 @@
             method:"POST",
             data:{login:false}
         }).done(function(){
-            location.href='admincompany.php';
+            location.href='company.php';
         })
     })
 </script>

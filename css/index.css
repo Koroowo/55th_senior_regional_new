@@ -24,8 +24,8 @@ body{
 .content{
     display: grid;
     grid-template-columns: repeat(4,1fr);
-    max-height: 400px;
-    width: 1100px;
+    max-height: 600px;
+    width: 100%;
 }
 .grid{
     display: grid;
@@ -36,8 +36,8 @@ body{
     padding: 20px;
 }
 .company_card{
-    width: 250px;
-    height: 175px;
+    width: 300px;
+    height: 250px;
     border: 1px solid #007bff;
     border-radius: 8px;
     display: flex;
@@ -51,14 +51,13 @@ body{
     scale: 1.1;
 }
 .product_card{
-    width: 200px;
-    height: 300px;
-    color: white;
-    background-color: #007bff;
+    width: 300px;
+    height: 250px;
+    border: 1px solid #007bff;
     border-radius: 8px;
     display: flex;
+    justify-content: center;
     flex-direction: column;
-    justify-content: space-around;
     align-items: center;
     transition-duration: 0.3s;
 }
