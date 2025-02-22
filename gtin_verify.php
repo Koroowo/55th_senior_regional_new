@@ -11,14 +11,6 @@
     <link rel="stylesheet" href="css/index.css">
     <script src="jquery.js"></script>
     <script src="bootstrap.js"></script>
-    <style>
-        .carousel-item-next {
-        transform: translateX(-100%) !important;
-        }
-        .active.carousel-item-left {
-        transform: translateX(100%) !important;
-        }
-    </style>
 </head>
 <body>
     <div class="top_banner">
