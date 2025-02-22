@@ -7,8 +7,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="bootstrap.css">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/index.css">
     <script src="jquery.js"></script>
     <script src="bootstrap.js"></script>
     <style>
@@ -22,8 +22,10 @@
 </head>
 <body>
     <div class="top_banner">
-        <h2 class="m-0">LOGO</h2>
-        <h2 class="m-0">臺灣人工智慧公會</h2>
+        <div class="d-flex text-center" role="button" onclick="location.href='index.php'">
+            <img src="img/logo.png" style="height:65px;" alt="">
+            <h1 class="mt-2 mx-3 font-weight-bold">臺灣人工智慧公會</h1>
+        </div>
         <div class="d-flex">
             <button class="btn" onclick="location.href='gtin_verify.php'">GTIN 批次驗證頁面</button>
             <button class="btn" onclick="location.href='searchpage.php'">產品查詢頁面</button>
@@ -43,7 +45,7 @@
             </div>
         </div>
     </div>
-    <footer class="footer">
+    <footer class="footer p-3 text-white">
         <p class="m-0">TWAIA, Taiwan Artificial Intelligence Association</p>
     </footer>
 </body>
