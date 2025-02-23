@@ -25,19 +25,19 @@
         </div>
     </div>
     <?php
-        $companys=$pdo->query("SELECT * FROM `company`")->fetchAll();
+        $companys=$pdo->query("SELECT * FROM `company` WHERE `status`='1'")->fetchAll();
     ?>
-    <div class="w-75 mx-auto">
+    <div class="w-75 mx-auto my-3 overflow-auto" style="max-height:500px;">
+        <h2 class="m-0 text-center">公司列表</h2>
         <table class="table table-striped table-light my-3 table-hover">
             <thead>
-                <th>公司名稱</th>
-                <th>公司地址</th>
-                <th>公司電話號碼</th>
-                <th>公司電子郵件地址</th>
-                <th>擁有者姓名</th>
+                <th class="col-4">公司名稱</th>
+                <th class="col-2">擁有者姓名</th>
+                <th class="col-1">基本資料</th>
+                <th class="col-1">產品資料</th>
                 <?php
                     if($_SESSION["login"]==true){
-                        echo "<th>操作</th>";
+                        echo "<th class='col-3'>操作</th>";
                     }
                 ?>
             </thead>
@@ -46,15 +46,38 @@
             ?>
             <tr>
                 <td><?=$company["name"]?></td>
-                <td><?=$company["address"]?></td>
-                <td><?=$company["phone"]?></td>
-                <td><?=$company["email"]?></td>
                 <td><?=$company["owner"]?></td>
+                <td><button class="btn btn-primary">查看</button></td>
+                <td><button class="btn btn-primary">查看</button></td>
                 <?php
                     if($_SESSION["login"]==true){
-                        echo "<td></td>";
+                        echo "<td>
+                            <button class='btn btn-warning' onclick='edit();' id='".$company["id"]."'>修改</button>
+                            <button class='btn btn-danger' onclick='del();' id='".$company["id"]."'>停用</button>
+                            <button class='btn btn-danger' onclick='del();' id='".$company["id"]."'>刪除</button>
+                        </td>";
                     }
                 ?>
+            </tr>
+            <?php
+                }
+            ?>
+        </table>
+    </div>
+    <div class="w-75 mx-auto overflow-auto" style="margin-bottom:100px; max-height:500px;">
+        <h2 class="m-0 text-center">已停用的會員公司</h2>
+        <table class="table table-striped table-light my-3">
+            <thead>
+                <th>公司名稱</th>
+                <th>擁有者姓名</th>
+            </thead>
+            <?php
+                $companys=$pdo->query("SELECT * FROM `company` WHERE `status`='0'")->fetchAll();
+                foreach($companys as $company){
+            ?>
+            <tr>
+                <td><?=$company["name"]?></td>
+                <td><?=$company["owner"]?></td>
             </tr>
             <?php
                 }
