@@ -183,12 +183,14 @@
         })
     }
     function del(id){
-        $.ajax({
-            url:"del.php",
-            method:"POST",
-            data:{id:id,is:"delete"}
-        }).done(function(){
-            location.href="company.php";
-        })
+        if(window.confirm("是否刪除此會員公司?")){
+            $.ajax({
+                url:"del.php",
+                method:"POST",
+                data:{id:id,is:"delete"}
+            }).done(function(){
+                location.href="company.php";
+            })
+        }
     }
 </script>
