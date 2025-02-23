@@ -26,7 +26,10 @@
         $companys=$pdo->query("SELECT * FROM `company` WHERE `status`='1'")->fetchAll();
     ?>
     <div class="w-75 mx-auto my-3 overflow-auto" style="max-height:500px;">
-        <h2 class="m-0 text-center">公司列表</h2>
+        <div class="d-flex justify-content-center">
+            <h2 class="m-0">會員公司列表</h2>
+            <button class="btn btn-success" onclick="add()">新增會員公司</button>
+        </div> 
         <table class="table table-striped table-light my-3 table-hover">
             <thead>
                 <th class="col-4">公司名稱</th>
@@ -91,7 +94,7 @@
     <div class="modal_bg" id="modal">
         <div class="modal_div" id="modal_div">
             <button class="btn btn-danger modal_exit" onclick="exit();">X</button>
-            <form action="editcompany.php" method="POST">
+            <form id="submitform">
                 <div class="d-flex justify-content-center mt-2">
                     <h4 class="m-0">公司名稱: </h4>
                     <input type="text" name="name" id="name" class="form-control w-50" >
@@ -113,7 +116,7 @@
                     <input type="text" name="owner" id="owner" class="form-control w-50" >
                 </div>
                 <div class="justify-content-center mt-2" id="btns">
-                    <button class="btn btn-success mx-2">修改</button>
+                    <button class="btn btn-success mx-2" id="send">送出</button>
                 </div>
             </form>
         </div>
@@ -133,7 +136,9 @@
             location.href="companydetail.php";
         })
     }
+    let action="";
     function edit(id){
+        action="edit";
         $.ajax({
             url:"fetchcompany.php",
             method:"POST",
@@ -169,6 +174,34 @@
             document.getElementById("btns").style.display="none";
         })
     }
+    function add(){
+        action="add"
+        document.querySelectorAll(".form-control").forEach(function(inputs){
+            inputs.value="";
+            inputs.disabled=false;
+        })
+        document.getElementById("modal").style.display="block";
+        document.getElementById("btns").style.display="flex";
+    }
+    document.getElementById("send").addEventListener("click",function(){
+        if(action=="add"){
+            $.ajax({
+                url:"addcompany.php",
+                method:"POST",
+                data:$("#submitform").serialize()
+            }).done(function(){
+                location.reload();
+            })
+        }else{
+            $.ajax({
+                url:"editcompany.php",
+                method:"POST",
+                data:$("#submitform").serialize()
+            }).done(function(){
+                location.reload();
+            })
+        }
+    })
     function exit(){
         document.getElementById("modal").style.display="none";
     }
