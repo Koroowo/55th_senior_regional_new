@@ -41,7 +41,6 @@
             if($_SESSION["login"]){ 
         ?>
             <div class="d-flex justify-content-center">
-                <button class="btn btn-success mx-4" onclick="location.href='addproduct.php'">新增產品</button>
             </div>
             <div class="d-flex">
                 <form action="import_json.php" method="POST" enctype="multipart/form-data">
@@ -61,11 +60,14 @@
             }
         ?>
         <div class="d-flex justify-content-center">
-            <button class="btn btn-outline-primary mx-2" onclick="location.href='export_json.php'">輸出產品JSON</button> 
-            <button class="btn btn-outline-primary mx-2" onclick="location.href='export_csv.php'">輸出產品CSV</button> 
+            <button class="btn btn-outline-primary mx-2" onclick="location.href='json/export_json.php'">輸出產品JSON</button> 
+            <button class="btn btn-outline-primary mx-2" onclick="location.href='csv/export_csv.php'">輸出產品CSV</button> 
         </div> 
     </div>
-    <h2 class="text-center m-0 my-3">與該公司相關的產品</h2>
+    <div class="d-flex justify-content-center mx-auto my-3">
+        <h2 class="m-0">與該公司相關的產品</h2>
+        <button class="btn btn-success mx-4" onclick="location.href='addproduct.php'">新增產品</button>
+    </div>
     <div style="height=300px;margin-bottom:100px;" class="grid mx-auto">
         <?php
             if($_SESSION["login"]==true){
