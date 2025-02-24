@@ -25,7 +25,11 @@
     <?php
         $companys=$pdo->query("SELECT * FROM `company` WHERE `status`='1'")->fetchAll();
     ?>
-    <div class="w-75 mx-auto my-3 overflow-auto" style="max-height:500px;">
+    <div class="w-75 mx-auto my-3 overflow-auto" style="max-height:600px;">
+        <div class="btn-group">
+            <button class="btn btn-primary">會員公司</button>
+            <button class="btn" onclick="location.href='products.php'">產品列表</button>
+        </div>
         <div class="d-flex justify-content-center">
             <h2 class="m-0">會員公司列表</h2>
             <button class="btn btn-success" onclick="add()">新增會員公司</button>

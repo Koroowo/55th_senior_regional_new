@@ -90,6 +90,7 @@
 </body>
 </html>
 <script>
+    // 看時間夠不夠 不夠就不要加
     document.querySelectorAll(".company_card").forEach(function(card){
         card.addEventListener("click",function(){
             let id=card.id;
@@ -104,7 +105,7 @@
         })
     })
     document.querySelectorAll(".product_card").forEach(function(card){
-        card.addEventListener("click",function(){
+        card.querySelector("h4").addEventListener("click",function(){
             let id=card.id;
             $.ajax({
                 url:"set.php",

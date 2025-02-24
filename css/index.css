@@ -25,19 +25,19 @@ body{
     display: grid;
     grid-template-columns: repeat(4,1fr);
     max-height: 400px;
-    width: 1100px;
+    width: 1200px;
 }
 .grid{
     display: grid;
     max-height: 600px;
-    width: 1100px;
+    width: 1200px;
     grid-template-columns: repeat(4,1fr);
     overflow: auto;
     padding: 20px;
 }
 .company_card{
-    width: 200px;
-    height: 150px;
+    width: 250px;
+    height: 250px;
     color: white;
     background-color: #007bff;
     border-radius: 8px;
@@ -52,20 +52,21 @@ body{
     scale: 1.1;
 }
 .product_card{
-    width: 200px;
-    height: 300px;
-    color: white;
-    background-color: #007bff;
+    width: 275px;
+    height: 250px;
+    border:1px solid #007bff;
     border-radius: 8px;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
     transition-duration: 0.3s;
 }
 .product_card:hover{
-    cursor: pointer;
     scale: 1.1;
+}
+.product_card h4:hover{
+    cursor: pointer;
 }
 .productimg{
     height: 100px;
