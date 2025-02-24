@@ -1,5 +1,5 @@
 <?php
-    include "connect.php";
+    include "../connect.php";
     header("Content-type: text/csv");
     header("Content-Disposition: attachment;filename=products.csv");
     $company_id=$_SESSION["company"];

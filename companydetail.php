@@ -43,13 +43,13 @@
             <div class="d-flex justify-content-center">
             </div>
             <div class="d-flex">
-                <form action="import_json.php" method="POST" enctype="multipart/form-data">
+                <form action="json/insert_json.php" method="POST" enctype="multipart/form-data">
                         <div class="d-flex flex-column mx-2">
                         <input type="file" name="json" accept=".json" required>
                         <button class="btn btn-info">輸入產品JSON</button>
                     </div>
                 </form>
-                <form action="import_csv.php" method="POST" enctype="multipart/form-data">
+                <form action="csv/insert_csv.php" method="POST" enctype="multipart/form-data">
                         <div class="d-flex flex-column mx-2">
                         <input type="file" name="csv" accept=".csv" required>
                         <button class="btn btn-info">輸入產品CSV</button>
