@@ -55,30 +55,30 @@
     <div class="content mx-auto">
         <?php
         $company=$pdo->query("SELECT * FROM `company` WHERE `status`='1'")->fetch();
-            echo "<div class='company_card my-3 mx-auto' id='".$company["id"]."' data-name='".$company["name"]."'>
-                <h4 class='m-0'>公司名稱: ".$company["name"]."</h4>
-                <p class='m-0'>擁有者: ".$company["owner"]."</p>
-            </div>";
-            $products=$pdo->query("SELECT * FROM `product` WHERE `company`='".$company["id"]."' LIMIT 3")->fetchAll();
-            foreach($products as $product){
-                if($product["img"]!=""){
-                    echo "<div class='product_card my-3 mx-auto' id='".$product["id"]."'>
-                        <h4 class='m-0'>產品名稱:".$product["name"]."</h4>
-                        <img src='data:".$product["mime"].";base64,".$product["img"]."' class='productimg' alt=''>
-                        <p class='m-0'>公司名稱:".$product["company_name"]."</p>
-                        <p class='m-0'>GTIN:".$product["gtin"]."</p>
-                        <p class='m-0'>描述:".$product["description"]."</p>
-                    </div>";
-                }else{
-                    echo "<div class='product_card my-3 mx-auto' id='".$product["id"]."'>
-                        <h4 class='m-0'>產品名稱:".$product["name"]."</h4>
-                        <img src='img/default_img.png' class='productimg' alt=''>
-                        <p class='m-0'>公司名稱:".$product["company_name"]."</p>
-                        <p class='m-0'>GTIN:".$product["gtin"]."</p>
-                        <p class='m-0'>描述:".$product["description"]."</p>
-                    </div>";
-                }
+        echo "<div class='company_card my-3 mx-auto' id='".$company["id"]."' data-name='".$company["name"]."'>
+            <h4 class='m-0'>公司名稱: ".$company["name"]."</h4>
+            <p class='m-0'>擁有者: ".$company["owner"]."</p>
+        </div>";
+        $products=$pdo->query("SELECT * FROM `product` WHERE `company`='".$company["id"]."' AND `status`='1' LIMIT 3")->fetchAll();
+        foreach($products as $product){
+            if($product["img"]!=""){
+                echo "<div class='product_card my-3 mx-auto' id='".$product["id"]."'>
+                    <h4 class='m-0'>產品名稱:".$product["name"]."</h4>
+                    <img src='data:".$product["mime"].";base64,".$product["img"]."' class='productimg' alt=''>
+                    <p class='m-0'>公司名稱:".$product["company_name"]."</p>
+                    <p class='m-0'>GTIN:".$product["gtin"]."</p>
+                    <p class='m-0'>描述:".$product["description"]."</p>
+                </div>";
+            }else{
+                echo "<div class='product_card my-3 mx-auto' id='".$product["id"]."'>
+                    <h4 class='m-0'>產品名稱:".$product["name"]."</h4>
+                    <img src='img/default_img.png' class='productimg' alt=''>
+                    <p class='m-0'>公司名稱:".$product["company_name"]."</p>
+                    <p class='m-0'>GTIN:".$product["gtin"]."</p>
+                    <p class='m-0'>描述:".$product["description"]."</p>
+                </div>";
             }
+        }
         ?>
     </div>
     <div class="d-flex justify-content-end mr-5 " style="margin-bottom:100px;">
