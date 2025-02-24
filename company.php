@@ -59,7 +59,7 @@
                 <td><?=$company["name"]?></td>
                 <td><?=$company["owner"]?></td>
                 <td><button class="btn btn-primary" onclick="view(<?=$company['id']?>);">查看</button></td>
-                <td><button class="btn btn-primary" onclick="set(<?=$company['id']?>);">查看</button></td>
+                <td><button class="btn btn-primary set" data-name="<?=$company["name"]?>" data-id="<?=$company["id"]?>">查看</button></td>
                 <?php
                     if($_SESSION["login"]==true){
                         echo "<td>
@@ -137,15 +137,19 @@
 </body>
 </html>
 <script>
-    function set(id){
-        $.ajax({
-            url:"set.php",
-            method:"POST",
-            data:{id:id,is:"company"}
-        }).done(function(){
-            location.href="companydetail.php";
+    document.querySelectorAll(".set").forEach(function(btn){
+        btn.addEventListener("click",function(){
+            let id=btn.dataset.id;
+            let name=btn.dataset.name
+            $.ajax({
+                url:"set.php",
+                method:"POST",
+                data:{id:id,name:name,is:"company"}
+            }).done(function(){
+                location.href="companydetail.php";
+            })
         })
-    }
+    })
     let action="";
     function edit(id){
         action="edit";
