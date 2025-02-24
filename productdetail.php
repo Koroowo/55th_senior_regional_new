@@ -23,9 +23,26 @@
             <button class="btn" onclick="location.href='login.php'">管理</button>
         </div>
     </div>
-    <div class="d-flex justify-content-end mr-5">
-        <button class="btn btn-info mx-2" onclick="location.href='productdetail.php'">中文</button>
-        <button class="btn btn-info" onclick="location.href='productdetail.php?en=true'">ENG</button>
+    <div class="d-flex justify-content-around mx-5 mt-3">
+        <form action="searchproduct.php" method="POST">
+            <input type="text" name="gtin" placeholder="查詢產品GTIN:" required>
+            <button class="btn btn-success">送出</button>
+        </form>
+        <div class="btn-group">
+            <?php
+                if(isset($_GET["en"])){
+            ?>
+                <button class="btn" onclick="location.href='productdetail.php'">中文</button>
+                <button class="btn btn-primary" onclick="location.href='productdetail.php?en=true'">ENG</button>
+            <?php
+                }else{
+            ?>
+                <button class="btn btn-primary" onclick="location.href='productdetail.php'">中文</button>
+                <button class="btn" onclick="location.href='productdetail.php?en=true'">ENG</button>
+            <?php
+                }
+            ?>
+        </div>
     </div>
     <div class="detail_container mt-3 mx-auto">
         <button class="modal_exit btn btn-danger" onclick="location.href='products.php'">返回</button>
@@ -66,6 +83,19 @@
                     ";
                 }
             }
+            if($_SESSION["login"]==true){
+            ?>
+            <form action="img.php?is=replace" method="POST" enctype="multipart/form-data">
+                <div class="d-flex justify-content-center">
+                    <input type="file" name="img" accept="image/jpeg,image/png" required>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <button class="btn btn-success">新增/修改圖片</button>
+                    <button type="button" class="btn btn-danger" onclick="delimg()">刪除圖片</button>
+                </div>
+            </form>
+            <?php
+            }
             ?>
         </div>
     </div>
@@ -75,12 +105,15 @@
 </body>
 </html>
 <script>
-    function edit(){
-        document.getElementById("modal").style.display="block";
-        $("#modal_div").show().animate({top:"50%"},300);
-    }
-    function exit(){
-        document.getElementById("modal").style.display="none";
-        document.getElementById("modal_div").style.top="20%";
+    function delimg(){
+        if(window.confirm("是否刪除產品圖片?")){
+            $.ajax({
+                url:"img.php?is=del",
+                method:"POST",
+                data:{}
+            }).done(function(){
+                location.href='productdetail.php';
+            })
+        }
     }
 </script>
