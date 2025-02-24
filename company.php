@@ -25,15 +25,21 @@
     <?php
         $companys=$pdo->query("SELECT * FROM `company` WHERE `status`='1'")->fetchAll();
     ?>
+    <div class="btn-group my-3 mx-5">
+        <button class="btn btn-primary">會員公司</button>
+        <button class="btn" onclick="location.href='products.php'">產品列表</button>
+    </div>
+    <div class="d-flex justify-content-center">
+        <h2 class="m-0">會員公司列表</h2>
+        <?php
+            if($_SESSION["login"]==true){
+        ?>
+        <button class="btn btn-success" onclick="add()">新增會員公司</button>
+        <?php
+        }
+        ?>
+    </div> 
     <div class="w-75 mx-auto my-3 overflow-auto" style="max-height:600px;">
-        <div class="btn-group">
-            <button class="btn btn-primary">會員公司</button>
-            <button class="btn" onclick="location.href='products.php'">產品列表</button>
-        </div>
-        <div class="d-flex justify-content-center">
-            <h2 class="m-0">會員公司列表</h2>
-            <button class="btn btn-success" onclick="add()">新增會員公司</button>
-        </div> 
         <table class="table table-striped table-light my-3 table-hover">
             <thead>
                 <th class="col-4">公司名稱</th>
@@ -214,7 +220,7 @@
         $.ajax({
             url:"del.php",
             method:"POST",
-            data:{id:id,is:"disable"}
+            data:{id:id,is:"disable",from:"company"}
         }).done(function(){
             location.href="company.php";
         })
@@ -224,7 +230,7 @@
             $.ajax({
                 url:"del.php",
                 method:"POST",
-                data:{id:id,is:"delete"}
+                data:{id:id,is:"delete",from:"company"}
             }).done(function(){
                 location.href="company.php";
             })

@@ -62,6 +62,10 @@ body{
     align-items: center;
     transition-duration: 0.3s;
 }
+.product_card.hide{
+    background-color: lightgrey;
+    opacity: 0.6;
+}
 .product_card:hover{
     scale: 1.1;
 }

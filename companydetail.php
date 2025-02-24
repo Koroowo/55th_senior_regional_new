@@ -66,7 +66,13 @@
     </div>
     <div class="d-flex justify-content-center mx-auto my-3">
         <h2 class="m-0">與該公司相關的產品</h2>
+        <?php
+            if($_SESSION["login"]==true){
+        ?>
         <button class="btn btn-success mx-4" onclick="location.href='addproduct.php'">新增產品</button>
+        <?php
+        }
+        ?>
     </div>
     <div style="height=300px;margin-bottom:100px;" class="grid mx-auto">
         <?php
@@ -77,18 +83,20 @@
             }
             foreach($rows as $row){
                 if($row["img"]!=""){
-                    echo "<div class='product_card mx-auto' id='".$row["id"]."'>
-                        <h4 class='m-0'>".$row["company_name"]."</h4>
+                    echo "<div class='product_card my-3 mx-auto' id='".$row["id"]."'>
+                        <h4 class='m-0'>產品名稱:".$row["name"]."</h4>
                         <img src='data:".$row["mime"].";base64,".$row["img"]."' class='productimg' alt=''>
-                        <p class='m-0'>".$row["gtin"]."</p>
-                        <p class='m-0'>".$row["description"]."</p>
+                        <p class='m-0'>公司名稱:".$row["company_name"]."</p>
+                        <p class='m-0'>GTIN:".$row["gtin"]."</p>
+                        <p class='m-0'>描述:".$row["description"]."</p>
                     </div>";
                 }else{
-                    echo "<div class='product_card mx-auto' id='".$row["id"]."'>
-                        <h4 class='m-0'>".$row["company_name"]."</h4>
-                        <img src='default_img.png' class='productimg' alt=''>
-                        <p class='m-0'>".$row["gtin"]."</p>
-                        <p class='m-0'>".$row["description"]."</p>
+                    echo "<div class='product_card my-3 mx-auto' id='".$row["id"]."'>
+                        <h4 class='m-0'>產品名稱:".$row["name"]."</h4>
+                        <img src='img/default_img.png' class='productimg' alt=''>
+                        <p class='m-0'>公司名稱:".$row["company_name"]."</p>
+                        <p class='m-0'>GTIN:".$row["gtin"]."</p>
+                        <p class='m-0'>描述:".$row["description"]."</p>
                     </div>";
                 }
             }
@@ -100,27 +108,14 @@
 </body>
 </html>
 <script>
-    function edit(){
-        document.getElementById("modal").style.display="block";
-        $("#modal_div").show().animate({top:"50%"},300);
-    }
-    function reset(){
-        document.querySelectorAll(".form-control").forEach(function(){
-            this.value="";
-        })
-    }
-    function exit(){
-        document.getElementById("modal").style.display="none";
-        document.getElementById("modal_div").style.top="20%";
-    }
     document.querySelectorAll(".product_card").forEach(function(card){
-        card.addEventListener("click",function(){
+        card.querySelector("h4").addEventListener("click",function(){
             $.ajax({
                 url:"set.php",
                 method:"POST",
                 data:{id:card.id,is:"product"}
             }).done(function(){
-                location.href='adminproduct.php';
+                location.href='productdetail.php';
             })
         })
     })
