@@ -29,7 +29,13 @@
         <div class="btn-group my-3 mx-5">
             <button class="btn" onclick="location.href='company.php'">會員公司</button>
             <button class="btn btn-primary">產品列表</button>
-            
+            <?php
+            if($_SESSION["login"]==true){
+            ?>
+            <button class="btn" onclick="location.href='logs.php'">管理紀錄</button>
+            <?php
+            }
+            ?>
         </div>
         <form class="my-3 mx-5" action="searchproduct.php" method="POST">
             <input type="text" name="gtin" placeholder="查詢產品GTIN:" required>

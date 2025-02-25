@@ -28,6 +28,13 @@
     <div class="btn-group my-3 mx-5">
         <button class="btn btn-primary">會員公司</button>
         <button class="btn" onclick="location.href='products.php'">產品列表</button>
+        <?php
+            if($_SESSION["login"]==true){
+        ?>
+        <button class="btn" onclick="location.href='logs.php'">管理紀錄</button>
+        <?php
+        }
+        ?>
     </div>
     <div class="d-flex justify-content-center">
         <h2 class="m-0">會員公司列表</h2>
