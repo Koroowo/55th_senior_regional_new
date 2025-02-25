@@ -40,8 +40,6 @@
         <?php
             if($_SESSION["login"]){ 
         ?>
-            <div class="d-flex justify-content-center">
-            </div>
             <div class="d-flex">
                 <form action="json/insert_json.php" method="POST" enctype="multipart/form-data">
                         <div class="d-flex flex-column mx-2">
